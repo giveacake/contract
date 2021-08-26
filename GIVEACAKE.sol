@@ -300,7 +300,8 @@ contract GIVEACAKE is ERC20, Ownable {
     ) internal override {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
-        require(!_isBlacklisted[from] && !_isBlacklisted[to], 'Blacklisted address');
+        require(!_isblacklisted[from], "You are blacklisted");
+        require(!_isblacklisted[to], "The recipient is blacklisted");
 
         if(amount == 0) {
             super._transfer(from, to, 0);
